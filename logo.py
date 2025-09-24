@@ -3,6 +3,7 @@ import platform
 import logging
 from colorama import Fore, Style, init
 from typing import Optional, Dict, List, Any, Tuple, Union
+from version import get_version
 
 # Initialize colorama
 init(autoreset=True)
@@ -15,8 +16,8 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Current version
-version = "1.9.9"
+# Dynamic version from git tags or fallback
+version = get_version()
 
 # ASCII art logo
 LOGO = f"""
