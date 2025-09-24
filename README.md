@@ -23,8 +23,7 @@
 <h4>Support Latest 0.49.x Version</h4>
 
 This tool is for educational purposes, currently the repo does not violate any laws. Please support the original project.
-This tool will not generate any fake email accounts and OAuth access.
-
+This tool registers accounts with custom emails, support Google and GitHub account registrations, temporary GitHub account registration, kills all Cursor's running processes, resets and wipes Cursor data and hardware info.
 Supports Windows, macOS and Linux.
 
 For optimal performance, run with privileges and always stay up to date.
