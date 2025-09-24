@@ -47,7 +47,7 @@ CURSOR_CONTRIBUTORS = f"""
 ║                        {Fore.YELLOW}CURSOR FREE VIP{Fore.CYAN}                          ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║ {Fore.GREEN}Author:{Fore.WHITE}  yeongpin                                            {Fore.CYAN}║
-║ {Fore.GREEN}GitHub:{Fore.WHITE}  https://github.com/yeongpin/cursor-free-vip         {Fore.CYAN}║
+║ {Fore.GREEN}GitHub:{Fore.WHITE}  https://github.com/psipher/cursor-free-vip-main       {Fore.CYAN}║
 ║ {Fore.GREEN}Version:{Fore.WHITE} {version}                                            {Fore.CYAN}║
 ╚══════════════════════════════════════════════════════════════════╝{Style.RESET_ALL}
 """

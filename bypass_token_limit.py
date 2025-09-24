@@ -179,15 +179,15 @@ def modify_workbench_js(file_path: str, translator: Any = None) -> bool:
             patterns = {
                 # Button replacement patterns
                 r'B(k,D(Ln,{title:"Upgrade to Pro",size:"small",get codicon(){return A.rocket},get onClick(){return t.pay}}),null)': 
-                    r'B(k,D(Ln,{title:"yeongpin GitHub",size:"small",get codicon(){return A.github},get onClick(){return function(){window.open("https://github.com/yeongpin/cursor-free-vip","_blank")}}}),null)',
+                    r'B(k,D(Ln,{title:"psipher GitHub",size:"small",get codicon(){return A.github},get onClick(){return function(){window.open("https://github.com/psipher/cursor-free-vip-main","_blank")}}}),null)',
                 
                 # Windows/Linux
                 r'M(x,I(as,{title:"Upgrade to Pro",size:"small",get codicon(){return $.rocket},get onClick(){return t.pay}}),null)': 
-                    r'M(x,I(as,{title:"yeongpin GitHub",size:"small",get codicon(){return $.github},get onClick(){return function(){window.open("https://github.com/yeongpin/cursor-free-vip","_blank")}}}),null)',
+                    r'M(x,I(as,{title:"psipher GitHub",size:"small",get codicon(){return $.github},get onClick(){return function(){window.open("https://github.com/psipher/cursor-free-vip-main","_blank")}}}),null)',
                 
                 # Mac button replacement pattern
                 r'$(k,E(Ks,{title:"Upgrade to Pro",size:"small",get codicon(){return F.rocket},get onClick(){return t.pay}}),null)': 
-                    r'$(k,E(Ks,{title:"yeongpin GitHub",size:"small",get codicon(){return F.rocket},get onClick(){return function(){window.open("https://github.com/yeongpin/cursor-free-vip","_blank")}}}),null)',
+                    r'$(k,E(Ks,{title:"psipher GitHub",size:"small",get codicon(){return F.rocket},get onClick(){return function(){window.open("https://github.com/psipher/cursor-free-vip-main","_blank")}}}),null)',
                 
                 # Badge replacement
                 r'<div>Pro Trial': r'<div>Pro',

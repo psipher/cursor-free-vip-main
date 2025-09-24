@@ -7,6 +7,9 @@ import platform
 import requests
 import subprocess
 import logging
+import json
+import re
+import shutil
 from colorama import Fore, Style, init
 from typing import Optional, Dict, List, Any, Tuple, Union
 from pathlib import Path
@@ -513,10 +516,11 @@ def select_language():
         print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('menu.lang_invalid_choice', lang_choices=f'0-{languages_count-1}')}{Style.RESET_ALL}")
         return False
 
-def check_latest_version():
+def check_latest_version(translator_instance=None):
     """Check if current version matches the latest release version"""
     try:
-        print(f"\n{Fore.CYAN}{EMOJI['UPDATE']} {translator.get('updater.checking')}{Style.RESET_ALL}")
+        t = translator_instance or translator
+        print(f"\n{Fore.CYAN}{EMOJI['UPDATE']} {t.get('updater.checking')}{Style.RESET_ALL}")
         
         # First try GitHub API
         headers = {
@@ -530,14 +534,14 @@ def check_latest_version():
         # Try GitHub API first
         try:
             github_response = requests.get(
-                "https://api.github.com/repos/yeongpin/cursor-free-vip/releases/latest",
+                "https://api.github.com/repos/psipher/cursor-free-vip-main/releases/latest",
                 headers=headers,
                 timeout=10
             )
             
             # Check if rate limit exceeded
             if github_response.status_code == 403 and "rate limit exceeded" in github_response.text.lower():
-                print(f"{Fore.YELLOW}{EMOJI['INFO']} {translator.get('updater.rate_limit_exceeded', fallback='GitHub API rate limit exceeded. Trying backup API...')}{Style.RESET_ALL}")
+                print(f"{Fore.YELLOW}{EMOJI['INFO']} {t.get('updater.rate_limit_exceeded', fallback='GitHub API rate limit exceeded. Trying backup API...')}{Style.RESET_ALL}")
                 raise Exception("Rate limit exceeded")
                 
             # Check if response is successful
@@ -552,7 +556,7 @@ def check_latest_version():
             
         except Exception as e:
             github_error = str(e)
-            print(f"{Fore.YELLOW}{EMOJI['INFO']} {translator.get('updater.github_api_failed', fallback='GitHub API failed, trying backup API...')}{Style.RESET_ALL}")
+            print(f"{Fore.YELLOW}{EMOJI['INFO']} {t.get('updater.github_api_failed', fallback='GitHub API failed, trying backup API...')}{Style.RESET_ALL}")
             
             # If GitHub API fails, try backup API
             try:
@@ -561,7 +565,7 @@ def check_latest_version():
                     'User-Agent': 'CursorFreeVIP-Updater'
                 }
                 backup_response = requests.get(
-                    "https://pinnumber.rr.nu/badges/release/yeongpin/cursor-free-vip",
+                    "https://pinnumber.rr.nu/badges/release/psipher/cursor-free-vip-main",
                     headers=backup_headers,
                     timeout=10
                 )
@@ -605,11 +609,11 @@ def check_latest_version():
             is_newer_version_available = version != latest_version
         
         if is_newer_version_available:
-            print(f"\n{Fore.YELLOW}{EMOJI['INFO']} {translator.get('updater.new_version_available', current=version, latest=latest_version)}{Style.RESET_ALL}")
+            print(f"\n{Fore.YELLOW}{EMOJI['INFO']} {t.get('updater.new_version_available', current=version, latest=latest_version)}{Style.RESET_ALL}")
             
             # get and show changelog
             try:
-                changelog_url = "https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/CHANGELOG.md"
+                changelog_url = "https://raw.githubusercontent.com/psipher/cursor-free-vip-main/main/CHANGELOG.md"
                 changelog_response = requests.get(changelog_url, timeout=10)
                 
                 if changelog_response.status_code == 200:
@@ -627,7 +631,7 @@ def check_latest_version():
                     
                     if latest_changes:
                         print(f"\n{Fore.CYAN}{'─' * 40}{Style.RESET_ALL}")
-                        print(f"{Fore.CYAN}{translator.get('updater.changelog_title')}:{Style.RESET_ALL}")
+                        print(f"{Fore.CYAN}{t.get('updater.changelog_title')}:{Style.RESET_ALL}")
                         
                         # show changelog content (max 10 lines)
                         changes_lines = latest_changes.strip().split('\n')
@@ -646,23 +650,23 @@ def check_latest_version():
             
             # Ask user if they want to update
             while True:
-                choice = input(f"\n{EMOJI['ARROW']} {Fore.CYAN}{translator.get('updater.update_confirm', choices='Y/n')}: {Style.RESET_ALL}").lower()
+                choice = input(f"\n{EMOJI['ARROW']} {Fore.CYAN}{t.get('updater.update_confirm', choices='Y/n')}: {Style.RESET_ALL}").lower()
                 if choice in ['', 'y', 'yes']:
                     break
                 elif choice in ['n', 'no']:
-                    print(f"\n{Fore.YELLOW}{EMOJI['INFO']} {translator.get('updater.update_skipped')}{Style.RESET_ALL}")
+                    print(f"\n{Fore.YELLOW}{EMOJI['INFO']} {t.get('updater.update_skipped')}{Style.RESET_ALL}")
                     return
                 else:
-                    print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('menu.invalid_choice')}{Style.RESET_ALL}")
+                    print(f"{Fore.RED}{EMOJI['ERROR']} {t.get('menu.invalid_choice')}{Style.RESET_ALL}")
             
             try:
                 # Execute update command based on platform
                 if platform.system() == 'Windows':
-                    update_command = 'irm https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/install.ps1 | iex'
+                    update_command = 'irm https://raw.githubusercontent.com/psipher/cursor-free-vip-main/main/scripts/install.ps1 | iex'
                     subprocess.run(['powershell', '-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', update_command], check=True)
                 else:
                     # For Linux/Mac, download and execute the install script
-                    install_script_url = 'https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/install.sh'
+                    install_script_url = 'https://raw.githubusercontent.com/psipher/cursor-free-vip-main/main/scripts/install.sh'
                     
                     # First verify the script exists
                     script_response = requests.get(install_script_url, timeout=5)
@@ -680,28 +684,28 @@ def check_latest_version():
                     if os.path.exists('install.sh'):
                         os.remove('install.sh')
                 
-                print(f"\n{Fore.GREEN}{EMOJI['SUCCESS']} {translator.get('updater.updating')}{Style.RESET_ALL}")
+                print(f"\n{Fore.GREEN}{EMOJI['SUCCESS']} {t.get('updater.updating')}{Style.RESET_ALL}")
                 sys.exit(0)
                 
             except Exception as update_error:
-                print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('updater.update_failed', error=str(update_error))}{Style.RESET_ALL}")
-                print(f"{Fore.YELLOW}{EMOJI['INFO']} {translator.get('updater.manual_update_required')}{Style.RESET_ALL}")
+                print(f"{Fore.RED}{EMOJI['ERROR']} {t.get('updater.update_failed', error=str(update_error))}{Style.RESET_ALL}")
+                print(f"{Fore.YELLOW}{EMOJI['INFO']} {t.get('updater.manual_update_required')}{Style.RESET_ALL}")
                 return
         else:
             # If current version is newer or equal to latest version
             if current_version_tuple > latest_version_tuple:
-                print(f"{Fore.GREEN}{EMOJI['SUCCESS']} {translator.get('updater.development_version', current=version, latest=latest_version)}{Style.RESET_ALL}")
+                print(f"{Fore.GREEN}{EMOJI['SUCCESS']} {t.get('updater.development_version', current=version, latest=latest_version)}{Style.RESET_ALL}")
             else:
-                print(f"{Fore.GREEN}{EMOJI['SUCCESS']} {translator.get('updater.up_to_date')}{Style.RESET_ALL}")
+                print(f"{Fore.GREEN}{EMOJI['SUCCESS']} {t.get('updater.up_to_date')}{Style.RESET_ALL}")
             
     except requests.exceptions.RequestException as e:
-        print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('updater.network_error', error=str(e))}{Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}{EMOJI['INFO']} {translator.get('updater.continue_anyway')}{Style.RESET_ALL}")
+        print(f"{Fore.RED}{EMOJI['ERROR']} {t.get('updater.network_error', error=str(e))}{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}{EMOJI['INFO']} {t.get('updater.continue_anyway')}{Style.RESET_ALL}")
         return
         
     except Exception as e:
-        print(f"{Fore.RED}{EMOJI['ERROR']} {translator.get('updater.check_failed', error=str(e))}{Style.RESET_ALL}")
-        print(f"{Fore.YELLOW}{EMOJI['INFO']} {translator.get('updater.continue_anyway')}{Style.RESET_ALL}")
+        print(f"{Fore.RED}{EMOJI['ERROR']} {t.get('updater.check_failed', error=str(e))}{Style.RESET_ALL}")
+        print(f"{Fore.YELLOW}{EMOJI['INFO']} {t.get('updater.continue_anyway')}{Style.RESET_ALL}")
         return
 
 def main() -> None:
@@ -733,7 +737,7 @@ def main() -> None:
         # Check for updates
         if config.has_option('Utils', 'enabled_update_check') and config.getboolean('Utils', 'enabled_update_check'):
             logger.info("Checking for updates")
-            check_latest_version()
+            check_latest_version(translator)
             
         # Display menu
         print_menu()
