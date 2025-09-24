@@ -1,5 +1,30 @@
 # Change Log
 
+## v1.11.05
+1. Update: Repository URLs migrated from yeongpin/cursor-free-vip to psipher/cursor-free-vip-main
+   - Updated all GitHub repository references and links
+   - Updated installation script URLs
+   - Updated badge endpoints and contributor links
+   - Updated star history and trendshift repository references
+2. Update: README documentation cleaned up
+   - Removed all Chinese text while preserving English content
+   - Simplified multilingual content to English-only format
+   - Maintained all technical documentation and configuration examples
+3. Add: Enhanced features from cursor-free-vip-enhanced integration
+   - Custom email account registration system
+   - Google and GitHub OAuth account registration support
+   - Temporary GitHub account registration capability
+   - Advanced Cursor process management and termination
+   - Complete Cursor data and hardware info reset functionality
+4. Add: Signup system updates (PR #1189)
+   - Improved account creation workflow
+   - Enhanced registration validation and error handling
+5. Add: Enhanced configuration, error handling and utility systems (PR #1093)
+   - Advanced configuration management with multi-format support
+   - Robust error handling with automatic categorization
+   - Enhanced utility functions for better system integration
+6. Improve: Documentation consistency and readability
+
 ## v1.11.04
 1. Add: Enhanced Configuration Management System | 新增增强配置管理系统
    - Multi-format support (INI, JSON, YAML) | 多格式支持 (INI, JSON, YAML)
