@@ -9,7 +9,6 @@
 
 [![Release](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/release/psipher/cursor-free-vip-main)](https://github.com/psipher/cursor-free-vip-main/releases/latest)
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
-[![Stars](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/stars/psipher/cursor-free-vip-main)](https://github.com/psipher/cursor-free-vip-main/stargazers)
 [![Downloads](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/downloads/psipher/cursor-free-vip-main/total)](https://github.com/psipher/cursor-free-vip-main/releases/latest)
 
 </p>

@@ -7,27 +7,10 @@ echo ================================================================
 echo                    CURSOR FREE VIP - ADMIN LAUNCHER
 echo ================================================================
 echo.
-echo This application requires Administrator privileges to function properly.
-echo.
 
 REM Check if running as administrator
 net session >nul 2>&1
-if %errorLevel% == 0 (
-    echo [OK] Running with Administrator privileges
-    echo.
-    echo Starting Cursor Free VIP...
-    echo.
-    
-    REM Change to script directory
-    cd /d "%~dp0"
-    
-    REM Run the application
-    .\myenv\Scripts\python.exe main.py
-    
-    echo.
-    echo Application has exited.
-    pause
-) else (
+if %errorLevel% neq 0 (
     echo [!] Administrator privileges required
     echo.
     echo Please run this batch file as Administrator:
@@ -35,11 +18,44 @@ if %errorLevel% == 0 (
     echo   2. Select 'Run as administrator'
     echo   3. Click 'Yes' when prompted by UAC
     echo.
-    echo Alternatively, use PowerShell as Administrator:
-    echo   1. Right-click Start button
-    echo   2. Select 'Terminal (Admin)' or 'PowerShell (Admin)'
-    echo   3. Navigate to: cd "%~dp0"
-    echo   4. Run: .\myenv\Scripts\python.exe main.py
-    echo.
-    pause
+    echo Press any key to exit...
+    pause >nul
+    exit /b 1
 )
+
+echo [OK] Running with Administrator privileges
+echo.
+
+REM Change to script directory
+cd /d "%~dp0"
+
+REM Check if Python environment exists
+if not exist ".\myenv\Scripts\python.exe" (
+    echo [!] Python virtual environment not found!
+    echo.
+    echo Expected path: .\myenv\Scripts\python.exe
+    echo.
+    echo Please create the virtual environment first or check your installation.
+    echo.
+    echo Press any key to exit...
+    pause >nul
+    exit /b 1
+)
+
+echo Starting Cursor Free VIP...
+echo.
+
+REM Run the application
+.\myenv\Scripts\python.exe main.py
+
+if %errorLevel% neq 0 (
+    echo.
+    echo [!] Application exited with error code %errorLevel%
+) else (
+    echo.
+    echo Application exited successfully.
+)
+
+echo.
+echo Press any key to exit...
+pause >nul

@@ -16,99 +16,84 @@ function Test-Administrator {
     return $principal.IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
 }
 
-# Function to restart as administrator
-function Start-AsAdmin {
-    $scriptPath = $MyInvocation.MyCommand.Path
-    $arguments = "-NoProfile -ExecutionPolicy Bypass -File `"$scriptPath`" -Force"
-    
-    try {
-        Start-Process powershell -Verb RunAs -ArgumentList $arguments
-        exit
-    }
-    catch {
-        Write-Host "Failed to restart as administrator: $_" -ForegroundColor Red
-        return $false
-    }
-}
-
-# Main script
+# Main script execution
 Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host "                CURSOR FREE VIP - ADMIN LAUNCHER" -ForegroundColor Cyan  
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""
 
-# Check if on Windows and if administrator privileges are required
-if ($PSVersionTable.Platform -ne "Unix") {
-    if (-not (Test-Administrator)) {
-        if (-not $Force) {
-            Write-Host "[!] Administrator privileges required" -ForegroundColor Yellow
-            Write-Host ""
-            Write-Host "This application requires Administrator privileges to function properly." -ForegroundColor White
-            Write-Host ""
-            Write-Host "Options:" -ForegroundColor Cyan
-            Write-Host "  1. Allow this script to restart as Administrator (Recommended)" -ForegroundColor White
-            Write-Host "  2. Manually run PowerShell as Administrator" -ForegroundColor White
-            Write-Host ""
-            
-            $choice = Read-Host "Would you like to restart as Administrator? (Y/n)"
-            if ($choice -eq "" -or $choice -eq "Y" -or $choice -eq "y") {
-                Write-Host "Restarting as Administrator..." -ForegroundColor Green
-                Start-AsAdmin
-                return
-            }
-            else {
-                Write-Host ""
-                Write-Host "Please manually run PowerShell as Administrator:" -ForegroundColor Yellow
-                Write-Host "  1. Right-click Start button" -ForegroundColor White
-                Write-Host "  2. Select 'Terminal (Admin)' or 'PowerShell (Admin)'" -ForegroundColor White
-                Write-Host "  3. Navigate to: cd `"$PWD`"" -ForegroundColor White
-                Write-Host "  4. Run: .\myenv\Scripts\python.exe main.py" -ForegroundColor White
-                Write-Host ""
-                Read-Host "Press Enter to exit"
-                exit 1
-            }
-        }
-        else {
-            Write-Host "[!] Still not running as Administrator after restart attempt" -ForegroundColor Red
-            Write-Host "Please manually run PowerShell as Administrator and try again." -ForegroundColor Yellow
-            Read-Host "Press Enter to exit"
-            exit 1
-        }
-    }
-}
+# Check environment first
+$scriptDir = $PSScriptRoot
+if (-not $scriptDir) { $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path }
+Set-Location $scriptDir
 
-Write-Host "[OK] Running with appropriate privileges" -ForegroundColor Green
-Write-Host ""
-Write-Host "Starting Cursor Free VIP..." -ForegroundColor Cyan
-Write-Host ""
-
-# Change to script directory
-Set-Location $PSScriptRoot
-
-# Check if virtual environment exists
+# Check Python environment
 if (-not (Test-Path ".\myenv\Scripts\python.exe")) {
-    Write-Host "[!] Virtual environment not found at .\myenv\Scripts\python.exe" -ForegroundColor Red
-    Write-Host "Please ensure the virtual environment is set up correctly." -ForegroundColor Yellow
+    Write-Host "[!] Virtual environment not found!" -ForegroundColor Red
+    Write-Host "Expected path: $scriptDir\myenv\Scripts\python.exe" -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "Please create the virtual environment first." -ForegroundColor White
+    Write-Host ""
     Read-Host "Press Enter to exit"
     exit 1
 }
 
-# Run the application
+if ($PSVersionTable.Platform -ne "Unix") {
+    if (-not (Test-Administrator)) {
+        Write-Host "[*] Current process is NOT elevated." -ForegroundColor Yellow
+        
+        # If Force was passed, it means we already tried to elevate and failed/were rejected
+        if ($Force) {
+            Write-Host "[!] Failed to acquire Administrator privileges." -ForegroundColor Red
+            Write-Host "    This could be due to UAC settings or user rejection." -ForegroundColor Yellow
+            Write-Host ""
+            Write-Host "Please manually run PowerShell as Administrator:" -ForegroundColor White
+            Write-Host "  1. Right-click Start button -> Terminal (Admin)" -ForegroundColor White
+            Write-Host "  2. cd `"$scriptDir`"" -ForegroundColor White
+            Write-Host "  3. .\myenv\Scripts\python.exe main.py" -ForegroundColor White
+            Write-Host ""
+            Read-Host "Press Enter to exit"
+            exit 1
+        }
+
+        Write-Host "This application requires Administrator privileges." -ForegroundColor White
+        Write-Host "Attempting to restart with Administrator privileges..." -ForegroundColor Cyan
+        Write-Host ""
+        
+        $choice = Read-Host "Proceed? (Y/n)"
+        if ($choice -eq "" -or $choice -eq "Y" -or $choice -eq "y") {
+            try {
+                # Use Start-Process with verb RunAs to elevate
+                $newArgs = "-NoProfile -ExecutionPolicy Bypass -File `"$($MyInvocation.MyCommand.Path)`" -Force"
+                Start-Process powershell.exe -Verb RunAs -ArgumentList $newArgs -WorkingDirectory $scriptDir
+                exit # Exit this non-elevated instance
+            }
+            catch {
+                Write-Host "[!] Error attempting to elevate: $_" -ForegroundColor Red
+                Read-Host "Press Enter to exit"
+                exit 1
+            }
+        } else {
+            Write-Host "Cancelled by user." -ForegroundColor Yellow
+            exit
+        }
+    }
+}
+
+Write-Host "[OK] Running with Administrator privileges" -ForegroundColor Green
+Write-Host ""
+Write-Host "Starting Cursor Free VIP..." -ForegroundColor Cyan
+Write-Host ""
+
 try {
     & ".\myenv\Scripts\python.exe" "main.py"
-    $exitCode = $LASTEXITCODE
-    
-    Write-Host ""
-    if ($exitCode -eq 0) {
-        Write-Host "Application completed successfully." -ForegroundColor Green
-    }
-    else {
-        Write-Host "Application exited with code: $exitCode" -ForegroundColor Yellow
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "[!] Application exited with code: $LASTEXITCODE" -ForegroundColor Yellow
     }
 }
 catch {
-    Write-Host "Error running application: $_" -ForegroundColor Red
+    Write-Host "[!] Error executing application: $_" -ForegroundColor Red
 }
 
 Write-Host ""
