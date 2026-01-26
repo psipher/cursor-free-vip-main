@@ -1,11 +1,18 @@
 # -*- mode: python ; coding: utf-8 -*-
 import os
 import platform
-from dotenv import load_dotenv
 
-# 加載環境變量獲取版本號
-load_dotenv()
-version = os.getenv('VERSION', '1.0.0')
+# Get version using the dynamic version system
+try:
+    import sys
+    sys.path.insert(0, '.')
+    from version import get_version
+    version = get_version()
+except ImportError:
+    # Fallback to environment variables
+    from dotenv import load_dotenv
+    load_dotenv()
+    version = os.getenv('VERSION', os.getenv('VERSION_FALLBACK', '1.0.0'))
 
 # 根据系统类型设置输出名称
 system = platform.system().lower()

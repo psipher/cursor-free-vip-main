@@ -711,14 +711,18 @@ def check_latest_version(translator_instance=None):
 def main() -> None:
     """Main entry point for the application."""
     try:
-        # Check for admin privileges if running as executable on Windows only
-        if platform.system() == 'Windows' and is_frozen() and not is_admin():
-            logger.warning("Running without admin privileges on Windows")
-            print(f"{Fore.YELLOW}{EMOJI['ADMIN']} {translator.get('menu.admin_required') if translator else 'Administrator privileges are required for some features'}{Style.RESET_ALL}")
-            if run_as_admin():
-                sys.exit(0)  # Exit after requesting admin privileges
-            else:
-                print(f"{Fore.YELLOW}{EMOJI['INFO']} {translator.get('menu.admin_required_continue') if translator else 'Continuing without administrator privileges. Some features may not work correctly.'}{Style.RESET_ALL}")
+        # Always require admin privileges on Windows
+        if platform.system() == 'Windows' and not is_admin():
+            logger.error("Administrator privileges are required")
+            print(f"\n{Fore.RED}{EMOJI['ADMIN']} {translator.get('menu.admin_required_strict') if translator else 'This application requires Administrator privileges to function properly.'}{Style.RESET_ALL}")
+            print(f"{Fore.YELLOW}{EMOJI['INFO']} {translator.get('menu.admin_how_to') if translator else 'Please run PowerShell as Administrator and try again.'}{Style.RESET_ALL}")
+            print(f"{Fore.CYAN}{EMOJI['INFO']} {translator.get('menu.admin_steps') if translator else 'Steps:'}{Style.RESET_ALL}")
+            print(f"  {Fore.WHITE}1. Right-click Start button → Select 'Terminal (Admin)' or 'PowerShell (Admin)'{Style.RESET_ALL}")
+            print(f"  {Fore.WHITE}2. Navigate to: cd \"{os.getcwd()}\"{Style.RESET_ALL}")
+            print(f"  {Fore.WHITE}3. Run: .\\myenv\\Scripts\\python.exe main.py{Style.RESET_ALL}")
+            print(f"\n{Fore.RED}{EMOJI['ERROR']} {translator.get('menu.admin_exit') if translator else 'Exiting application...'}{Style.RESET_ALL}")
+            input(f"\n{Fore.YELLOW}Press Enter to exit...{Style.RESET_ALL}")
+            sys.exit(1)
         
         # Display logo
         print_logo()

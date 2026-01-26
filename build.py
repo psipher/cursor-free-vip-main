@@ -61,9 +61,15 @@ def build():
     if os.path.exists('build'):
         shutil.rmtree('build')
     
-    # Reload environment variables to ensure getting the latest version
-    load_dotenv(override=True)
-    version = os.getenv('VERSION', '1.0.0')
+    # Get version using the dynamic version system
+    try:
+        from version import get_version
+        version = get_version()
+    except ImportError:
+        # Fallback to environment variables
+        load_dotenv(override=True)
+        version = os.getenv('VERSION', os.getenv('VERSION_FALLBACK', '1.0.0'))
+    
     print(f"\033[93m📦 Building version: v{version}\033[0m")
 
     try:
