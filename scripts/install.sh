@@ -39,7 +39,7 @@ get_downloads_dir() {
 # Get latest version
 get_latest_version() {
     echo -e "${CYAN}ℹ️ Checking latest version...${NC}"
-    latest_release=$(curl -s https://api.github.com/repos/yeongpin/cursor-free-vip/releases/latest) || {
+    latest_release=$(curl -s https://api.github.com/repos/psipher/cursor-free-vip-main/releases/latest) || {
         echo -e "${RED}❌ Cannot get latest version information${NC}"
         exit 1
     }

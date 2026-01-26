@@ -11,18 +11,17 @@
 [![License: CC BY-NC-ND 4.0](https://img.shields.io/badge/License-CC_BY--NC--ND_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 [![Stars](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/stars/psipher/cursor-free-vip-main)](https://github.com/psipher/cursor-free-vip-main/stargazers)
 [![Downloads](https://img.shields.io/endpoint?url=https://api.pinstudios.net/api/badges/downloads/psipher/cursor-free-vip-main/total)](https://github.com/psipher/cursor-free-vip-main/releases/latest)
-<a href="https://buymeacoffee.com/yeongpin" target="_blank"><img alt="Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20Me-FFDA33"></a>
- [<img src="https://devin.ai/assets/deepwiki-badge.png" alt="Ask DeepWiki.com" height="20"/>](https://deepwiki.com/psipher/cursor-free-vip-main)
 
 </p>
 
-
-<a href="https://trendshift.io/repositories/13425" target="_blank"><img src="https://trendshift.io/api/badge/repositories/13425" alt="psipher%2Fcursor-free-vip-main | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
 <br>
 
 <h4>Support Latest 0.49.x Version</h4>
 
 This tool is for educational purposes, currently the repo does not violate any laws. Please support the original project.
+
+> [!NOTE]
+> This project was originally forked from [cursor-free-vip](https://github.com/yeongpin/cursor-free-vip). Since the original repository is no longer receiving updates, I am maintaining this fork to ensure compatibility with the latest versions.
 This tool registers accounts with custom emails, support Google and GitHub account registrations, temporary GitHub account registration, kills all Cursor's running processes, resets and wipes Cursor data and hardware info.
 Supports Windows, macOS and Linux.
 
@@ -89,6 +88,29 @@ irm https://raw.githubusercontent.com/psipher/cursor-free-vip-main/main/scripts/
 </details>
 
 If you want to stop the script, please press Ctrl+C
+
+### 🔐 Administrator Privileges Required (Windows)
+
+**Important**: This application requires Administrator privileges on Windows to function properly.
+
+**Quick Start Options:**
+
+1. **Using the launcher scripts** (Recommended):
+   - Run `run_as_admin.bat` - Double-click and select "Run as administrator"
+   - Or run `run_as_admin.ps1` - PowerShell script with auto-elevation
+
+2. **Manual PowerShell Admin**:
+   - Right-click Start button → Select "Terminal (Admin)" or "PowerShell (Admin)"
+   - Navigate to project directory: `cd "path\to\cursor-free-vip-main"`
+   - Run: `.\myenv\Scripts\python.exe main.py`
+
+3. **Using built executable**:
+   - The compiled `.exe` will automatically request admin privileges
+
+**Why Admin Rights?**
+- Registry modifications for machine ID reset
+- System-level file access for Cursor configuration
+- Complete hardware fingerprint changes
 
 ## ❗ Note
 
@@ -161,13 +183,13 @@ email = xxxxx@mailto.plus
 epin = 
 
 [WindowsPaths]
-storage_path = C:\Users\yeongpin\AppData\Roaming\Cursor\User\globalStorage\storage.json
-sqlite_path = C:\Users\yeongpin\AppData\Roaming\Cursor\User\globalStorage\state.vscdb
-machine_id_path = C:\Users\yeongpin\AppData\Roaming\Cursor\machineId
-cursor_path = C:\Users\yeongpin\AppData\Local\Programs\Cursor\resources\app
-updater_path = C:\Users\yeongpin\AppData\Local\cursor-updater
-update_yml_path = C:\Users\yeongpin\AppData\Local\Programs\Cursor\resources\app-update.yml
-product_json_path = C:\Users\yeongpin\AppData\Local\Programs\Cursor\resources\app\product.json
+storage_path = C:\Users\username\AppData\Roaming\Cursor\User\globalStorage\storage.json
+sqlite_path = C:\Users\username\AppData\Roaming\Cursor\User\globalStorage\state.vscdb
+machine_id_path = C:\Users\username\AppData\Roaming\Cursor\machineId
+cursor_path = C:\Users\username\AppData\Local\Programs\Cursor\resources\app
+updater_path = C:\Users\username\AppData\Local\cursor-updater
+update_yml_path = C:\Users\username\AppData\Local\Programs\Cursor\resources\app-update.yml
+product_json_path = C:\Users\username\AppData\Local\Programs\Cursor\resources\app\product.json
 
 [Browser]
 default_browser = opera
@@ -179,7 +201,7 @@ chrome_driver_path = D:\VisualCode\cursor-free-vip-new\drivers\chromedriver.exe
 edge_driver_path = D:\VisualCode\cursor-free-vip-new\drivers\msedgedriver.exe
 firefox_driver_path = D:\VisualCode\cursor-free-vip-new\drivers\geckodriver.exe
 brave_driver_path = D:\VisualCode\cursor-free-vip-new\drivers\chromedriver.exe
-opera_path = C:\Users\yeongpin\AppData\Local\Programs\Opera\opera.exe
+opera_path = C:\Users\username\AppData\Local\Programs\Opera\opera.exe
 opera_driver_path = D:\VisualCode\cursor-free-vip-new\drivers\chromedriver.exe
 
 [OAuth]
@@ -213,21 +235,6 @@ Welcome to submit Issues and Pull Requests!
 ## 📩 Disclaimer
 
 This tool is only for learning and research purposes, and any consequences arising from the use of this tool are borne by the user.
-
-## 💰 Buy Me a Coffee
-
-<div align="center">
-  <table>
-    <tr>
-      <td>
-        <img src="./images/provi-code.jpg" alt="buy_me_a_coffee" width="280"/><br>
-      </td>
-      <td>
-        <img src="./images/paypal.png" alt="buy_me_a_coffee" width="280"/><br>
-      </td>
-    </tr>
-  </table>
-</div>
 
 ## ⭐ Star History
 
